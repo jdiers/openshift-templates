@@ -133,6 +133,15 @@ objects:
               - gitlab-runner
               - --user
               - gitlab-runner
+              -  --working-directory
+              - /etc/docker/certs.d/docker.ballmark.io
+              -  --config
+              - /etc/docker/certs.d/docker.ballmark.io/ballmark.cert
+              - /etc/docker/certs.d/docker.ballmark.io/ballmark.key
+              - --service
+              - gitlab-runner
+              - --user
+              - gitlab-runner
           resources:
             limits:
               memory: ${MEMORY_LIMIT}
@@ -180,8 +189,8 @@ objects:
           namespace = "${GITLAB_RUNNER_NAMESPACE}"
           privileged = false
           host = ""
-          cert_file = ""
-          key_file = ""
+          cert_file = "/etc/docker/certs.d/docker.ballmark.io/ballmark.cert"
+          key_file = "/etc/docker/certs.d/docker.ballmark.io/ballmark.key"
           ca_file = ""
           image = ""
           cpus = ""
@@ -290,6 +299,7 @@ objects:
             - '-c'
             - >-
               /bin/mkdir -p /export/bkt-gitlab-runner ; /usr/bin/minio server /export
+              /bin/mkdir -p /etc/docker/certs.d/docker.ballmark.io
           resources:
             limits:
               cpu: 100m
