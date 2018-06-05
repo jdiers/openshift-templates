@@ -290,7 +290,6 @@ objects:
             - '-c'
             - >-
               /bin/mkdir -p /export/bkt-gitlab-runner ; /usr/bin/minio server /export
-              /bin/mkdir -p /etc/docker/certs.d/docker.ballmark.io
           resources:
             limits:
               cpu: 100m
